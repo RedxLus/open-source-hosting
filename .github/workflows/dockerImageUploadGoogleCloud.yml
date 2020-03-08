@@ -10,8 +10,8 @@ jobs:
     - name: Build the Docker image of HOSTING --> ACCESS --> GCloud
       run: |
         docker build --file HOSTING/ACCESS/dockerfile --tag gcloud . 
-        docker tag gcloud:latest ${{ secrets.USER_DOCKER }}/gcloud-sdk-google-cloud:m-$(date +%B)
+        docker tag gcloud:latest ${{ secrets.USER_DOCKER }}/gcloud-sdk-google-cloud:m-$(date +%Y-%B)
     - name: Docker login
       run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
     - name: Docker push image of HOSTING --> ACCESS --> GCloud
-      run: docker push ${{ secrets.USER_DOCKER }}/gcloud-sdk-google-cloud:m-$(date +%B)
+      run: docker push ${{ secrets.USER_DOCKER }}/gcloud-sdk-google-cloud:m-$(date +%Y-%B)
