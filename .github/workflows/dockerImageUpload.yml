@@ -1,22 +1,16 @@
-name: Docker Image CI
-
+name: Minecraft Server - Docker Image CI 
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
-      
     - name: Build the Docker image of HOSTING --> GAMES --> Minecraft
-      run: docker build --file HOSTING/GAMES/Minecraft/dockerfile --tag $usuario/minecraft-server:$(date +%s) .
+      run: docker build --file HOSTING/GAMES/Minecraft/dockerfile --tag $usuario/minecraft-server:$(date +%s) . && docker images
       env:
        usuario: ${{ secrets.USER_DOCKER }}
        contrasena: ${{ secrets.PASS_DOCKER }}
