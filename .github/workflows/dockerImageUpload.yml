@@ -11,8 +11,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image of HOSTING --> GAMES --> Minecraft
       run: docker build --file HOSTING/GAMES/Minecraft/dockerfile --tag minecraft . && docker tag minecraft redxlus/minecraft-server:$(date +%s)
-      env:
-       contrasena: ${{ secrets.PASS_DOCKER }}
     - name: Docker login
       env:
        usuario: ${{ secrets.USER_DOCKER }}
@@ -20,5 +18,3 @@ jobs:
       run: docker login --username $usuario --password $contrasena
     - name: Docker push image of HOSTING --> GAMES --> Minecraft
       run: docker push redxlus/minecraft-server:$(date +%s)
-      env:
-       contrasena: ${{ secrets.PASS_DOCKER }}
