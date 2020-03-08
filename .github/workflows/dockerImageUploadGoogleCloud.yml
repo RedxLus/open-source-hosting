@@ -1,0 +1,21 @@
+name: Google Cloud - Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image of HOSTING --> ACCESS --> GCloud
+      run: |
+        docker build --file HOSTING/ACCESS/dockerfile --tag gcloud . 
+        docker tag gcloud:latest ${{ secrets.USER_DOCKER }}/gcloud-sdk-google-cloud:m-$(date +%B)
+    - name: Docker login
+      run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
+    - name: Docker push image of HOSTING --> ACCESS --> GCloud
+      run: docker push ${{ secrets.USER_DOCKER }}/gcloud-sdk-google-cloud:m-$(date +%B)
