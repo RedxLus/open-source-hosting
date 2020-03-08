@@ -1,0 +1,107 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: vestacp
+  labels:
+    app: vestacp
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vestacp
+        tipo: deploy
+        version: "0.0.0"
+    spec:
+      containers:
+        - name: vestacp
+          image: niiknow/vestacp
+          ports:
+          - containerPort: 80
+            name: http
+          - containerPort: 443
+            name: https
+          - containerPort: 22
+            name: ssh
+          - containerPort: 3322
+            name: ssh2
+          - containerPort: 8083
+            name: web
+          - containerPort: 8080
+            name: web2
+    #       volumeMounts:
+    #       - name: properties
+    #         mountPath: /server.properties
+    #         subPath: server.properties
+    #       - name: world
+    #         mountPath: /world
+    #   volumes:
+    #   - name: properties
+    #     secret:
+    #      secretName: serverpp  # kubectl create secret generic serverpp --from-file=server.properties
+    #   - name: world
+    #     persistentVolumeClaim:
+    #      claimName: world-minecraft
+
+         
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: loadbalancer-vestacp
+spec:
+  type: LoadBalancer
+  selector:
+    app: vestacp
+    tipo: deploy
+    version: "0.0.0"
+  ports:
+    - protocol: TCP
+      port: 8083
+      targetPort: 8083
+      name: web
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      name: web2
+    - protocol: TCP
+      port: 22
+      targetPort: 3322
+      name: ssh
+
+      
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: minecraft-service
+# spec:
+#   ports:
+#   - name: minecraft
+#     targetPort: 25565
+#     port: 25565
+#   selector:
+#     app: minecraft
+#     tipo: deploy
+#     version: "0.0.0"
+
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: world-minecraft
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 2Gi

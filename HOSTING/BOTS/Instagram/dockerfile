@@ -1,0 +1,7 @@
+FROM debian
+RUN apt-get update -y && apt-get dist-upgrade -y
+RUN apt-get install python-setuptools git python-pip python3-pip -y
+RUN pip install -U instabot
+RUN git clone https://github.com/instagrambot/instabot.git
+WORKDIR /instabot
+CMD sleep infinity

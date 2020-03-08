@@ -1,0 +1,1 @@
+/usr/local/ispconfig/server/plugins-available/shelluser_base_plugin.inc.php

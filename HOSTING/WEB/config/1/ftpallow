@@ -1,0 +1,2 @@
+# list of users ALLOWED non-anonymous FTP access.
+# You must edit the pam config in /etc/pam.d/pure-ftpd for this to take effect.

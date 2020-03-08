@@ -1,0 +1,7 @@
+FROM debian
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install software-properties-common dirmngr -y
+RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8
+RUN add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://ftp.osuosl.org/pub/mariadb/repo/10.2/debian stretch main'
+RUN apt-get update && apt-get install mariadb-server -y
+

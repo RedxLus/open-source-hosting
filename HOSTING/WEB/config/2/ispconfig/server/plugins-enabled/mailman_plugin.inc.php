@@ -1,0 +1,1 @@
+/usr/local/ispconfig/server/plugins-available/mailman_plugin.inc.php

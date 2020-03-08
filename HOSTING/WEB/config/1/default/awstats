@@ -1,0 +1,19 @@
+# AWStats configuration options
+
+# This variable controls the scheduling priority for updating AWStats
+# datafiles and for generating static html reports.  Normal priority
+# is 0 and a lower priority is 10.  See "man nice" for more info.
+AWSTATS_NICE=10
+
+# This variable controls whether to create static html reports every
+# night in /var/cache/awstats/.  Set to "yes" or "no".
+# To enable this you should also set AWSTATS_ENABLE_CRONTABS to "yes".
+AWSTATS_ENABLE_BUILDSTATICPAGES="yes"
+
+# This variable controls the language of all static html reports.  Set
+# one to appropriate two-letter language code (default to en).
+AWSTATS_LANG="en"
+
+# This variable controls whether to run regular cron jobs for awstats.  Set
+# to "yes" or "no" (default to "yes").
+AWSTATS_ENABLE_CRONTABS="yes"

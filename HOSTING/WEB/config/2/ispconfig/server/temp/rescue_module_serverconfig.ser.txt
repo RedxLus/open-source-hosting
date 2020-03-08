@@ -1,0 +1,1 @@
+a:1:{s:12:"serverconfig";a:2:{s:6:"server";a:1:{s:8:"loglevel";i:2;}s:6:"rescue";a:4:{s:10:"try_rescue";s:1:"n";s:23:"do_not_try_rescue_httpd";s:1:"n";s:23:"do_not_try_rescue_mysql";s:1:"n";s:22:"do_not_try_rescue_mail";s:1:"n";}}}

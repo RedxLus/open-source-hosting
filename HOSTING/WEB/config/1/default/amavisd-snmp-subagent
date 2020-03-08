@@ -1,0 +1,16 @@
+# To enable the amavis-snmp-subagent set ENABLED to yes
+
+ENABLED="no"
+
+# there are two implementations of the subagent daemon:
+# 1) the default bdb version
+# 2) a zero mq based version
+# if you want to use this agent you need at least 
+# libnet-snmp-perl installed.
+# the zeromq version also needs libzeromq-perl.
+# You also have to enable zeromq
+# in amavis: $enable_zmq = 1; 
+#  
+# See RELEASE_NOTES for details. 
+
+AGENT_BACKEND="bdb" # use zeromq for the zeromq version

@@ -1,0 +1,2 @@
+FROM niiknow/vestacp
+RUN passwd admin

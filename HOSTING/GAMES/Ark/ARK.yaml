@@ -1,0 +1,51 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ark
+  labels:
+    app: ark
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ark
+        tipo: deploy
+        version: "0.0.0"
+    spec:
+      containers:
+        - name: ark-server
+          image: turzam/ark
+          env:
+           - name: SESSIONNAME
+             value: "myserver"
+           - name: ADMINPASSWORD
+             value: "mypasswordadmin"
+          ports:
+          - containerPort: 7778
+            name: uno
+          - containerPort: 27015
+            name: dos
+            
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: loadbalancer-ark
+spec:
+  type: LoadBalancer
+  selector:
+    app: ark
+    tipo: deploy
+    version: "0.0.0"
+  ports:
+    - protocol: UDP
+      port: 7778
+      targetPort: 7778
+      name: uno
+    - protocol: UDP
+      port: 27015
+      targetPort: 27015
+      name: dos
+      
+      

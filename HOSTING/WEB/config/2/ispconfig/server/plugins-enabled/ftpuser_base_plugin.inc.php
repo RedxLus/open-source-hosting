@@ -1,0 +1,1 @@
+/usr/local/ispconfig/server/plugins-available/ftpuser_base_plugin.inc.php

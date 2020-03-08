@@ -1,0 +1,7 @@
+# To enable the amavis-mc service set ENABLED to yes Please remember: to get
+# those services working you have to enable zmq support in amavis.
+# ($enable_zmq = 1)
+# See README.Debian for details
+
+ENABLED="no"
+

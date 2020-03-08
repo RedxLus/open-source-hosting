@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: twitter-bot
+  labels:
+    app: tw
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tw
+        tipo: deploy
+        version: "0.0.0"
+    spec:
+      containers:
+        - name: twitter-bot
+          image: redxlus/twitter-bot
+          volumeMounts:
+            - name: configuration
+              mountPath: /Twitter-Follow-and-Unfollow-Bot/config.json
+              subPath: config.json
+      volumes:
+        - name: configuration
+          secret:
+           secretName: tw-config
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tw-config
+type: Opaque
+data:
+  config.json: ewogICAgImF1dGgiOiB7CiAgICAgICAgInNjcmVlbl9uYW1lIjogIllPVVIgU0NSRUVOIE5BTUUgd2l0aG91dCB0aGUgQCBzaWduIiwKICAgICAgICAiQ09OU1VNRVJfS0VZIjogIllPVVIgQ09OU1VNRVIgS0VZIiwKICAgICAgICAiQ09OU1VNRVJfU0VDUkVUIjogIllPVVIgQ09OU1VNRVIgU0VDUkVUIiwKICAgICAgICAiQUNDRVNTX1RPS0VOIjogIllPVVIgQUNDRVNTIFRPS0VOIiwKICAgICAgICAiQUNDRVNTX1NFQ1JFVCI6ICJZT1VSIEFDQ0VTUyBTRUNSRVQiCiAgICB9LAogICAgImxhbmciOiAiU2VhcmggeW91ciBsYW5ndWFnZSBoZXJlOiBodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9MaXN0X29mX0lTT182MzktMV9jb2RlcyAoZS5nLiBlcykiLAogICAgInJlc3VsdHNfc2VhcmNoIjogNSwKICAgICJibGFja2xpc3RlZCI6IFsKICAgICAgICAiUHV0IiwKICAgICAgICAid29yZHMiLAogICAgICAgICJvciBwaHJhc2VzIHRoYXQiLAogICAgICAgICJ5b3Ugd2FudCB0byIsCiAgICAgICAgImJsYWNrbGlzdCIsCiAgICAgICAgImluIiwKICAgICAgICAiaGVyZSIKICAgIF0sCiAgICAia2V5d29yZHMiOiBbCiAgICAgICAgIlB1dCBrZXl3b3JkcyBvciBwaHJhc2VzIHRvIGZvbGxvdyBvciBmYXZvcml0ZSBiYXNlZCBvbiBhIGtleXdvcmQuIFNlcGVyYXRlIGJ5IGNvbW1hcyBsaWtlIHRoaXM6IiwKICAgICAgICAicG90YXRvIiwKICAgICAgICAidG9tYXRvIgogICAgXSwKICAgICJ3aGl0ZWxpc3RlZF9hY2NvdW50cyI6IFsKICAgICAgICAiUHV0IHR3aXR0ZXIgYWNjb3VudHMgdGhhdCB5b3UgZG9uJ3Qgd25hdCB0byB1bmZvbGxvdyBpbiBoZXJlLCBsaWtlIHRoaXM6ICIsCiAgICAgICAgImRyYWtlIiwKICAgICAgICAiTkZMIiwKICAgICAgICAidHdpdHRlclUiCiAgICBdLAogICAgIm1lc3NhZ2VzIjogWwogICAgICAgICJQdXQgYW5kIHNlcGVyYXRlIHlvdXIgbWVzc2FnZXMgaW4gaGVyZSBsaWtlIHRoaXMiLAogICAgICAgICJoaSwgY2hlY2sgb3V0IG15IGZlZWQiLAogICAgICAgICJJIExPVkUgeW91ciB0d2VldHMhIgogICAgXQp9
+---

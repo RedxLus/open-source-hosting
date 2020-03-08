@@ -1,0 +1,14 @@
+/var/log/clamav/clamav.log {
+     rotate 12
+     weekly
+     compress
+     delaycompress
+     create 640  clamav adm
+     postrotate
+     if [ -d /run/systemd/system ]; then
+         systemctl -q is-active clamav-daemon && systemctl kill --signal=SIGHUP clamav-daemon || true
+     else
+         /etc/init.d/clamav-daemon reload-log > /dev/null || true
+     fi
+     endscript
+     }

@@ -1,0 +1,5 @@
+user = ispconfig
+password = 45ee8a3b697cd9565b980d4f0646499e
+dbname = dbispconfig
+query = SELECT destination FROM mail_forwarding WHERE source = '%s' AND active = 'y' AND allow_send_as = 'y' AND server_id = 1 UNION SELECT email FROM mail_user WHERE email = '%s' AND disablesmtp = 'n' AND server_id = 1;
+hosts = 127.0.0.1

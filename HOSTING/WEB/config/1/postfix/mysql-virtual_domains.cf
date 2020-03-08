@@ -1,0 +1,8 @@
+user = ispconfig
+password = 45ee8a3b697cd9565b980d4f0646499e
+dbname = dbispconfig
+table = mail_domain
+select_field = domain
+where_field = domain
+additional_conditions = and active = 'y' and server_id = 1
+hosts = 127.0.0.1

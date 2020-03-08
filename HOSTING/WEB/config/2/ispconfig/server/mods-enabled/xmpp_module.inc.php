@@ -1,0 +1,1 @@
+/usr/local/ispconfig/server/mods-available/xmpp_module.inc.php

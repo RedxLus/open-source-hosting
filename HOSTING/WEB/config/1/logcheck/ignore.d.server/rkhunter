@@ -1,0 +1,2 @@
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ Rootkit Hunter: Rootkit hunter check started \(version [0-9.]+\)$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ Rootkit Hunter: Scanning took ([0-9]+ minutes? and )?[0-9]+ seconds?$

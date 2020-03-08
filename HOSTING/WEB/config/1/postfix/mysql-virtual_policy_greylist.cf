@@ -1,0 +1,5 @@
+user = ispconfig
+password = 45ee8a3b697cd9565b980d4f0646499e
+dbname = dbispconfig
+query = SELECT 'greylisting' FROM (SELECT greylisting, source AS email FROM mail_forwarding WHERE server_id = 1 UNION SELECT greylisting, email FROM mail_user WHERE server_id = 1) addresses WHERE addresses.email='%s' AND addresses.greylisting='y' UNION SELECT 'greylisting' FROM `mail_forwarding` f CROSS JOIN `mail_user` u ON u.email = f.destination WHERE f.type = 'catchall' AND u.greylisting = 'y' AND u.server_id = 1 AND f.source = '@%s'
+hosts = 127.0.0.1

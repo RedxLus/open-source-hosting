@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gcloud
+  labels:
+    app: gcloud
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gcloud
+        tipo: deploy
+        version: "0.0.0"
+    spec:
+      containers:
+        - name: gcloud
+          imagePullPolicy: Always
+          image: redxlus/gcloud-sdk-google-cloud:latest-with-kubectl-and-ssh
+          ports:
+          - containerPort: 22
+            name: ssh
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: loadbalancer-gcloud
+spec:
+  type: LoadBalancer
+  selector:
+    app: gcloud
+    tipo: deploy
+    version: "0.0.0"
+  ports:
+    - protocol: TCP
+      port: 22
+      targetPort: 22
+      name: ssh
+    

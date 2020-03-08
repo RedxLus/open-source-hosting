@@ -1,0 +1,1 @@
+/usr/local/ispconfig/server/plugins-available/aps_plugin.inc.php

@@ -1,0 +1,4 @@
+FROM jerob/docker-ispconfig
+RUN mkdir /opensource-hosting && git clone https://gitlab.com/luisdieguezbarrio/opensource-hosting.git /opensource-hosting && cd /opensource-hosting/WEB/config && mv 2/* /usr/local
+
+
