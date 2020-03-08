@@ -14,6 +14,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image of HOSTING --> GAMES --> Minecraft
-      run: docker build --file HOSTING/GAMES/Minecraft/dockerfile --tag my-image-name:$(date +%s) .
-    # run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    #- name: Build the Docker image of HOSTING --> GAMES --> Minecraft
+    #  run: docker build --file HOSTING/GAMES/Minecraft/dockerfile --tag my-image-name:$(date +%s) .
+    - name: Upload Docker image of HOSTING --> GAMES --> Minecraft
+      env: # Or as an environment variable
+       usuario: ${{ secrets.USER_DOCKER }}
+      run: echo $usuario
+      # run: docker login --username=yourhubusername --email=youremail@company.com
+
