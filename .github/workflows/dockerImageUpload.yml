@@ -19,6 +19,5 @@ jobs:
     - name: Upload Docker image of HOSTING --> GAMES --> Minecraft
       env: # Or as an environment variable
        usuario: ${{ secrets.USER_DOCKER }}
-      run: echo $usuario
-      # run: docker login --username=yourhubusername --email=youremail@company.com
-
+       contrasena: ${{ secrets.PASS_DOCKER }}
+      run: docker login --username $usuario --password $contrasena
