@@ -10,8 +10,8 @@ jobs:
     - name: Build the Docker image of HOSTING --> GAMES --> Minecraft
       run: |
         docker build --file HOSTING/GAMES/Minecraft/dockerfile --tag minecraft . 
-        docker tag minecraft:latest ${{ secrets.USER_DOCKER }}/minecraft-server:m-$(date +%Y-%B)
+        docker tag minecraft:latest ${{ secrets.USER_DOCKER }}/minecraft-server:$(date +%Y-%B)
     - name: Docker login
       run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
     - name: Docker push image of HOSTING --> GAMES --> Minecraft
-      run: docker push ${{ secrets.USER_DOCKER }}/minecraft-server:m-$(date +%Y-%B)
+      run: docker push ${{ secrets.USER_DOCKER }}/minecraft-server:$(date +%Y-%B)
