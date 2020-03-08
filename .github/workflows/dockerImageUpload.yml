@@ -15,5 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image of HOSTING --> GAMES --> Minecraft
-      run: docker build --file HOSTING/GAMES/Minecraft/Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build --file HOSTING/GAMES/Minecraft/Dockerfile --tag my-image-name:$(date +%s) .
     # run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
