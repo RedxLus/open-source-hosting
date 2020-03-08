@@ -16,7 +16,7 @@ jobs:
        contrasena: ${{ secrets.PASS_DOCKER }}
     - name: Docker login
       env:
-       usuario: ${{ secrets.USER_DOCKER }}
+       usuario: redxlus
        contrasena: ${{ secrets.PASS_DOCKER }}
       run: docker login --username $usuario --password $contrasena
     - name: Docker push image of HOSTING --> GAMES --> Minecraft
