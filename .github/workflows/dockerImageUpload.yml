@@ -17,6 +17,9 @@ jobs:
       
     - name: Build the Docker image of HOSTING --> GAMES --> Minecraft
       run: docker build --file HOSTING/GAMES/Minecraft/dockerfile --tag $usuario/minecraft-server:$(date +%s) .
+      env:
+       usuario: ${{ secrets.USER_DOCKER }}
+       contrasena: ${{ secrets.PASS_DOCKER }}
     - name: Docker login
       env:
        usuario: ${{ secrets.USER_DOCKER }}
@@ -24,3 +27,6 @@ jobs:
       run: docker login --username $usuario --password $contrasena
     - name: Docker push image of HOSTING --> GAMES --> Minecraft
       run: docker push $usuario/minecraft-server:$(date +%s)
+      env:
+       usuario: ${{ secrets.USER_DOCKER }}
+       contrasena: ${{ secrets.PASS_DOCKER }}
