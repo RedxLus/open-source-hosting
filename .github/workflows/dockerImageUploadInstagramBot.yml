@@ -12,8 +12,8 @@ jobs:
     - name: Build the Docker image of HOSTING --> BOTS --> Instagram
       run: |
         docker build --file HOSTING/BOTS/Twitter/dockerfile --tag instagram-bot . 
-        docker tag instagram-bot:latest ${{ secrets.USER_DOCKER }}/instagram-bot:m-$(date +%Y-%B)
+        docker tag instagram-bot:latest ${{ secrets.USER_DOCKER }}/instagram-bot:$(date +%Y-%B)
     - name: Docker login
       run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
     - name: Docker push image of HOSTING --> BOTS --> Instagram
-      run: docker push ${{ secrets.USER_DOCKER }}/instagram-bot:m-$(date +%Y-%B)
+      run: docker push ${{ secrets.USER_DOCKER }}/instagram-bot:$(date +%Y-%B)
