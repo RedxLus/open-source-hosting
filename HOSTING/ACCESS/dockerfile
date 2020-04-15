@@ -1,4 +1,4 @@
-FROM ubuntu:19.10
+FROM ubuntu:18.04
 
 # gcloud
 RUN apt-get update && apt-get install lsb-release curl gnupg2 -y && apt-get clean all
