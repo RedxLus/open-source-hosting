@@ -1,0 +1,24 @@
+name: Nextcloud & MySQL - Docker Image CI
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image of HOSTING --> STORAGE --> Nextcloud --> mysql
+      run: |
+        docker build --file HOSTING/STORAGE/Nextcloud/mysql/dockerfile --tag mysql . 
+        docker tag mysql:latest ${{ secrets.USER_DOCKER }}/mysql-img:$(date +%Y-%B)
+    - name: Build the Docker image of HOSTING --> STORAGE --> Nextcloud
+      run: |
+        docker build --file HOSTING/STORAGE/Nextcloud/dockerfile --tag nextcloud . 
+        docker tag nextcloud:latest ${{ secrets.USER_DOCKER }}/nextcloud-img:$(date +%Y-%B)
+    - name: Docker login
+      run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
+    - name: Docker push image of HOSTING --> ACCESS --> Nextcloud --> mysql
+      run: docker push ${{ secrets.USER_DOCKER }}/mysql-img:$(date +%Y-%B)
+    - name: Docker push image of HOSTING --> ACCESS --> Nextcloud
+      run: docker push ${{ secrets.USER_DOCKER }}/nextcloud-img:$(date +%Y-%B)
