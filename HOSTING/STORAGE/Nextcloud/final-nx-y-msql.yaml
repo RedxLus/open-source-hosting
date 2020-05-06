@@ -146,10 +146,10 @@ metadata:
 spec:
   ports:
   - name: https
-    containerPort: 443
+    targetPort: 443
     protocol: TCP
   - name: http
-    containerPort: 80
+    targetPort: 80
     protocol: TCP
   selector:
     app: nextcloud
