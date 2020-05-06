@@ -99,7 +99,6 @@ spec:
         volumeMounts:
         - name: pvc
           mountPath: /var/www/html/data
-          subPath: data
       volumes:
       - name: pvc
         persistentVolumeClaim:
@@ -137,6 +136,13 @@ spec:
         image: redxlus/mysql-img
         ports:
         - containerPort: 3306
+        volumeMounts:
+        - name: pvc
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: pvc
+        persistentVolumeClaim:
+          claimName: pvc-mysql
 ---
 apiVersion: v1
 kind: Service
@@ -191,3 +197,14 @@ spec:
   resources:
     requests:
       storage: 100Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-mysql
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
