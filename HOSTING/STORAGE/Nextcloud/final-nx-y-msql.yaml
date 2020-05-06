@@ -139,20 +139,34 @@ spec:
   selector:
     app: mysql
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: loadbalancer-nextcloud
+  name: nextcloud-service
 spec:
-  type: LoadBalancer
+  ports:
+  - name: https
+    containerPort: 443
+    protocol: TCP
+  - name: http
+    containerPort: 80
+    protocol: TCP
   selector:
     app: nextcloud
-  ports:
-    - protocol: TCP
-      port: 443
-      targetPort: 443
-      name: https
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-      name: http
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nextcloud-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: next.ludiba.org
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nextcloud-service
+          servicePort: http
+    
