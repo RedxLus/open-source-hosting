@@ -6,8 +6,8 @@
     type: Opaque
     data:
       # User admin nextcloud
-      nextcloud-username: YWRtaW4=
-      nextcloud-password: Y2hhbmdlbWU=
+      nextcloud-username: YWRtaW5pc3RyYWRvcg==
+      nextcloud-password: czswTUMxfWN8Vmo0QHJBZ1JGczg=
       # Database (MYSQL)
       mysql-database: YmQtbmV4dGNsb3Vk
       mysql-user: dXN1YXJpby1uZXh0Y2xvdWQ=
@@ -156,4 +156,3 @@ spec:
       port: 80
       targetPort: 80
       name: http
-    
