@@ -147,10 +147,10 @@ spec:
   ports:
   - name: https
     targetPort: 443
-    protocol: TCP
+    port: 443
   - name: http
     targetPort: 80
-    protocol: TCP
+    port: 80
   selector:
     app: nextcloud
 ---
@@ -169,4 +169,3 @@ spec:
         backend:
           serviceName: nextcloud-service
           servicePort: http
-    
