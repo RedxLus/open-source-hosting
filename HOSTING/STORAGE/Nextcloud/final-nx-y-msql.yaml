@@ -1,0 +1,95 @@
+---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: config-nextcloud
+    type: Opaque
+    data:
+      # User admin nextcloud
+      nextcloud-username: YWRtaW4=
+      nextcloud-password: Y2hhbmdlbWU=
+      # Database (MYSQL)
+      mysql-database: YmQtbmV4dGNsb3Vk
+      mysql-user: dXN1YXJpby1uZXh0Y2xvdWQ=
+      mysql-password: N3FZRndEYitwdENbYnFuQkEwW10=
+      mysql-host: 
+      # Trust domain in Nextcloud
+      nextcloud-domain: bmV4dC5sdWRpYmEub3Jn
+      # Directory to store the data
+      nextcloud-dir-data: L3Zhci93d3cvaHRtbC9kYXRh
+---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: config-mysql
+    type: Opaque
+    data:
+        mysql-root-password: dFtXPWE7RzF4cHJOeElvUDdZdis=
+        mysql-name-database: YmQtbmV4dGNsb3Vk
+        mysql-user: dXN1YXJpby1uZXh0Y2xvdWQ=
+        mysql-user-password: N3FZRndEYitwdENbYnFuQkEwW10=
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextcloud
+  labels:
+    app: nextcloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextcloud
+  template:
+    metadata:
+      labels:
+        app: nextcloud
+    spec:
+      containers:
+      - name: nextcloud
+        image: redxlus/nextcloud-img
+        ports:
+        - containerPort: 80
+      initContainers:
+        - name: init-check
+          image: busybox
+          command: ["sh", "-c", "echo 'until nc mysql-service 3306' > script.sh && \
+                    echo 'do' >> script.sh && \
+                    echo 'sleep 3' >> script.sh && \
+                    echo 'done' >> script.sh && \
+                    sh script.sh"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: redxlus/mysql-img
+        ports:
+        - containerPort: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  ports:
+  - name: mysql
+    targetPort: 3306
+    port: 3306
+  selector:
+    app: mysql
+    
