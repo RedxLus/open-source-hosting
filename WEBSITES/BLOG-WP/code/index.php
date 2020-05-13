@@ -7,25 +7,23 @@
 
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
        <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-       <div class="recuadro">
-           <!-- <img class="recuadro-imagen" src="http://placehold.it/750x300" alt="Card image cap"> -->
-		   <?php the_post_thumbnail('destacada',array( 'class' => 'img-fluid rounded recuadro-imagen' )); ?>
-		   
-         <div class="recuadro-body">
-           <h2 class="recuadro-titulo"><?php the_title(); ?></h2>
-           <p class="card-text"><?php the_excerpt(); ?></p>
-           <a href="<?php the_permalink(); ?>" class="boton-nuevo">Leer más &rarr;</a>
-         </div>
-         <div class="recuadro-texto-abajo">
-           <?php echo get_the_date(); ?> - <?php the_author(); ?>
-           
-         </div>
-       </div>
+        <div class="recuadro">
+        <?php the_post_thumbnail('destacada',array( 'class' => 'img-fluid rounded recuadro-imagen' )); ?>
+        
+          <div class="recuadro-body">
+            <h2 class="recuadro-titulo"><?php the_title(); ?></h2>
+            <p class="card-text"><?php the_excerpt(); ?></p>
+            <a href="<?php the_permalink(); ?>" class="boton-nuevo">Leer más &rarr;</a>
+          </div>
+
+          <div class="recuadro-texto-abajo">
+            <?php echo get_the_date(); ?> - <?php the_author(); ?>
+          </div>
+        </div>
        </div>
        <?php endwhile; else : ?>
 
            <p>Lo siento, no hemos encontrado ningún post.</p>
-
 
        <?php endif; ?>
 		
