@@ -1,23 +1,6 @@
-<script>
-    var myIndex = 0;
-    carousel();
-    
-    function carousel() {
-      var i;
-      var x = document.getElementsByClassName("imageneSlider");
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";  
-      }
-      myIndex++;
-      if (myIndex > x.length) {myIndex = 1}    
-      x[myIndex-1].style.display = "block";  
-      setTimeout(carousel, 2000); // Change image every 2 seconds
-    }
-</script>
-
 <!--Footer-->
 <footer class="bg-white">
-	<div class="container mx-auto  px-8">
+	<div class="container mx-auto px-8">
 
 		<div class="w-full flex flex-col md:flex-row py-6">
 
@@ -69,16 +52,7 @@
 			</div>
 		</div>
 	</div>
-
-
 </footer>
-
-
-
-
-<!-- jQuery if you need it
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  -->
 
 <script>
 	var scrollpos = window.scrollY;
