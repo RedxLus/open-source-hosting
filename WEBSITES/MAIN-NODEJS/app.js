@@ -30,6 +30,13 @@ app.get("/juegos/minecraft", function (req,res) {
 
 });
 
+app.get("/bots/contacto", function (req,res) {
+
+  res.render("footerEnlaces/contacto", {
+  });
+
+});
+
 app.get("/terminos-y-condiciones", function (req,res) {
 
   res.render("footerEnlaces/terminos", {
