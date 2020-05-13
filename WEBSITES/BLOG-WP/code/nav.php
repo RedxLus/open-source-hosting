@@ -21,23 +21,16 @@
 					<a class="inline-block py-2 px-4 text-black font-bold no-underline" href="https://next.ludiba.org">Almacenamiento</a>
 				</li>
 				<li class="mr-3">
-					<a class="inline-block py-2 px-4 text-black font-bold no-underline" href="#">Bots</a>
+					<a class="inline-block py-2 px-4 text-black font-bold no-underline" href="http://ludiba.org/bots/contacto">Bots</a>
 				</li>
 				<div class="dropdown">
 					<button class="dropbtn inline-block py-2 px-4 text-black font-bold no-underline">Juegos    <i class="fa fa-caret-down"></i></button>
 					<div class="dropdown-content">
-					  <a href="http://localhost:3000/juegos/minecraft">Minecraft</a>
+					  <a href="http://ludiba.org/juegos/minecraft">Minecraft</a>
 					  <a style="color: grey;" href="#">ARK (Próximamente)</a>
 					</div>
 				  </div>
-				<li class="mr-3">
-					<a class="inline-block py-2 px-4 text-black font-bold no-underline" href="#">Video</a>
-				</li>
-				<li class="mr-3">
-					<a class="inline-block py-2 px-4 text-black font-bold no-underline" href="#">Websites</a>
-				</li>
 			</ul>
-			<!-- <button id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75">Action</button> -->
 		</div>
 	</div>
 	
