@@ -1,0 +1,15 @@
+.gradient {
+
+/* background: linear-gradient(90deg, #d53369 0%, #daae51 100%); */
+/* background: radial-gradient(circle, rgba(244,91,105,1) 0%, rgba(130,70,112,1) 100%); */
+/* background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%); */
+
+background: linear-gradient(90deg, rgb(55, 216, 201) 0%, rgba(148,187,233,1) 100%);
+
+}
+
+.px-3 {
+padding-left: .75rem;
+padding-right: .75rem;
+padding-top: 3.4rem;
+}

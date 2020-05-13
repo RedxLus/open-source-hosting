@@ -1,0 +1,72 @@
+<%- include("partials/head"); -%>
+<%- include("partials/headNav"); -%>
+
+<section class="gradient pt-24 pb-12">
+    <div class="container mx-auto px-4">
+        <div class="-mx-4 flex flex-col lg:flex-row items-center">
+            <div class="px-4 w-full lg:w-3/12">
+                <img class="w-1/2 lg:w-3/4 mx-auto mb-4" style="margin-top: 80px;"
+                    src="img/footerEnlaces/contacto.svg" />
+            </div>
+            <div class="px-4 w-full lg:w-9/12 xl:w-7/12 text-center lg:text-left">
+                <h1 class="mb-4 text-5xl font-extrabold leading-tight text-white">Contacto
+                </h1>
+                <p class="text-white text-xl">A continuación tienes los métodos para contactar con el desarrollador de
+                    LUDIBA GROUP: Luis Dieguez Barrio.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container mx-auto px-4">
+        <div class="-mx-4 flex justify-center">
+            <div class="px-4 lg:w-8/12">
+                <div class="bg-white -mt-6 mb-12 rounded shadow">
+                    <div class="py-16 px-12 text-justify">
+                        <article>
+                            <h2 class="text-3xl mb-3 uppercase text-left">1. Email</h2>
+                            <p class="mb-4">El siguiente formulario mandará un email a mi dirección de correo.
+                                <div class="container">
+                                    <form action="/send-email" method="post">
+                                        <div class="row">
+                                            <div class="col-md-4"></div>
+                                            <div class="form-group col-md-4">
+                                                <label for="to">To:</label>
+                                                <input type="email" class="form-control" name="to">
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4"></div>
+                                            <div class="form-group col-md-4">
+                                                <label for="subject">Subject:</label>
+                                                <input type="text" class="form-control" name="subject">
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4"></div>
+                                            <div class="form-group col-md-4">
+                                                <label for="body">Body:</label>
+                                                <textarea cols="5" rows="5" class="form-control" name="body"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4"></div>
+                                            <div class="form-group col-md-4">
+                                                <button type="submit" class="btn btn-success">Send</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </p>
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include("../partials/footer"); -%>

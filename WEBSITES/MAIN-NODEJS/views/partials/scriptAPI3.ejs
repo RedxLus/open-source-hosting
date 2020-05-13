@@ -1,0 +1,62 @@
+<script>
+    const apiURLs = ["https://api.mcsrvstat.us/2/hypixel.net",
+        "https://api.mcsrvstat.us/2/minecraftes.ludiba.org",
+        "https://api.mcsrvstat.us/2/fadecloud.com"
+    ];
+    const down = "NO DISPONIBLE";
+    const up = "DISPONIBLE";
+    const idGeneral = ["primero", "segundo", "tercero"];
+    const botones = ["btnprimero", "btnsegundo", "btntercero"];
+    const mensajes = ["mensaje1", "mensaje2", "mensaje3"];
+    const jugadores = ["jugadores1", "jugadores2", "jugadores3"];
+    const ips = ["ip1", "ip2", "ip3"];
+    const puertos = ["puerto1", "puerto2", "puerto3"];
+
+    function algoMal(indice) {
+        document.getElementById(idGeneral[indice]).innerText = down;
+
+        document.getElementById(botones[indice]).classList.replace("pricing-table__button", "error");
+
+        document.getElementById(mensajes[indice]).innerText = down;
+        document.getElementById(jugadores[indice]).innerText = down;
+        document.getElementById(ips[indice]).innerText = down;
+        document.getElementById(puertos[indice]).innerText = down;
+    }
+
+    function todoBien(indice, resp) {
+        const tratarRespuesta = resp;
+        document.getElementById(idGeneral[indice]).innerText = up;
+
+        const length = 7;
+        const mensaje = tratarRespuesta.motd.clean;
+        var recorteMensaje = mensaje.toString().substr(0, 18);
+
+        document.getElementById(mensajes[indice]).innerText = recorteMensaje;
+
+        const jugadoresTotales = tratarRespuesta.players.online + "/" + tratarRespuesta.players.max;
+        document.getElementById(jugadores[indice]).innerText = jugadoresTotales;
+        document.getElementById(ips[indice]).innerText = tratarRespuesta.ip;
+        document.getElementById(puertos[indice]).innerText = tratarRespuesta.port;
+    }
+
+    async function llamadaDeAPI(indice) {
+        const respuesta = await fetch(apiURLs[indice]);
+        // Esto ya es un objeto de js \\
+        const tratarRespuesta = await respuesta.json();
+
+        console.log(tratarRespuesta.online)
+
+        if (tratarRespuesta.online == false) {
+
+            algoMal(indice);
+
+        } else {
+
+            todoBien(indice, tratarRespuesta);
+
+        }
+    }
+
+    for (let index = 0; index < apiURLs.length; index++) {
+        llamadaDeAPI(index)
+    }

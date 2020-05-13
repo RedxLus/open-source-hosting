@@ -1,0 +1,155 @@
+<script>
+            // const apiURL = "https://api.mcsrvstat.us/2/minecraftes.ludiba.org";
+            const apiURLprimero = "https://api.mcsrvstat.us/2/hypixel.net";
+            const apiURLsegundo = "https://api.mcsrvstat.us/2/minecraftes.ludiba.org";
+            const apiURLtercero = "https://api.mcsrvstat.us/2/fadecloud.com";
+           
+        
+        async function llamadaDeAPIprimero() {
+            const respuesta = await fetch(apiURLprimero);
+            // Esto ya es un objeto de js \\
+            const tratarRespuesta = await respuesta.json();
+            
+            // console.log(tratarRespuesta);
+            // console.log(tratarRespuesta.ip);
+            // console.log(tratarRespuesta.port);
+            console.log(tratarRespuesta.online)
+
+            if (tratarRespuesta.online == false ) {
+                const down = "NO DISPONIBLE";
+                document.getElementById("primero").textContent = down;
+
+                document.getElementById("btnprimero").classList.replace("pricing-table__button", "error");
+
+                document.getElementById("mensaje1").textContent = down;
+                document.getElementById("jugadores1").textContent = down;
+                document.getElementById("ip1").textContent = down;
+                document.getElementById("puerto1").textContent = down;
+
+
+            } else {
+                const up = "DISPONIBLE";
+                document.getElementById("primero").textContent = up;
+
+                const length = 7;
+                const mensaje = tratarRespuesta.motd.clean;
+                // var recorteMensaje = mensaje.substring(0, length);
+                var recorteMensaje = mensaje.toString().substr(0, 18);
+
+
+                document.getElementById("mensaje1").textContent = recorteMensaje;
+
+
+
+                const jugadores = tratarRespuesta.players.online + "/" + tratarRespuesta.players.max;
+                document.getElementById("jugadores1").textContent = jugadores;
+                document.getElementById("ip1").textContent = tratarRespuesta.ip;
+                document.getElementById("puerto1").textContent = tratarRespuesta.port;
+            }
+
+
+            // document.getElementById("primero").textContent = tratarRespuesta.ip;
+            // document.getElementById("segundo").textContent = tratarRespuesta.port;
+            
+        }
+
+        async function llamadaDeAPIsegundo() {
+            const respuesta = await fetch(apiURLsegundo);
+            // Esto ya es un objeto de js \\
+            const tratarRespuesta = await respuesta.json();
+            
+            // console.log(tratarRespuesta);
+            // console.log(tratarRespuesta.ip);
+            // console.log(tratarRespuesta.port);
+            console.log(tratarRespuesta.online)
+
+            if (tratarRespuesta.online == false ) {
+                const down = "NO DISPONIBLE";
+                document.getElementById("segundo").textContent = down;
+
+                document.getElementById("btnsegundo").classList.replace("pricing-table__button", "error");
+
+                document.getElementById("mensaje2").textContent = down;
+                document.getElementById("jugadores2").textContent = down;
+                document.getElementById("ip2").textContent = down;
+                document.getElementById("puerto2").textContent = down;
+
+
+            } else {
+                const up = "DISPONIBLE";
+                document.getElementById("segundo").textContent = up;
+
+                const length = 7;
+                const mensaje = tratarRespuesta.motd.clean;
+                // var recorteMensaje = mensaje.substring(0, length);
+                var recorteMensaje = mensaje.toString().substr(0, 18);
+
+
+                document.getElementById("mensaje2").textContent = recorteMensaje;
+
+
+
+                const jugadores = tratarRespuesta.players.online + "/" + tratarRespuesta.players.max;
+                document.getElementById("jugadores2").textContent = jugadores;
+                document.getElementById("ip2").textContent = tratarRespuesta.ip;
+                document.getElementById("puerto2").textContent = tratarRespuesta.port;
+            }
+
+
+            // document.getElementById("primero").textContent = tratarRespuesta.ip;
+            // document.getElementById("segundo").textContent = tratarRespuesta.port;
+            
+        }
+
+        async function llamadaDeAPItercero() {
+            const respuesta = await fetch(apiURLtercero);
+            // Esto ya es un objeto de js \\
+            const tratarRespuesta = await respuesta.json();
+            
+            // console.log(tratarRespuesta);
+            // console.log(tratarRespuesta.ip);
+            // console.log(tratarRespuesta.port);
+            console.log(tratarRespuesta.online)
+
+            if (tratarRespuesta.online == false ) {
+                const down = "NO DISPONIBLE";
+                document.getElementById("tercero").textContent = down;
+
+                document.getElementById("btntercero").classList.replace("pricing-table__button", "error");
+
+                document.getElementById("mensaje3").textContent = down;
+                document.getElementById("jugadores3").textContent = down;
+                document.getElementById("ip3").textContent = down;
+                document.getElementById("puerto3").textContent = down;
+
+
+            } else {
+                const up = "DISPONIBLE";
+                document.getElementById("tercero").textContent = up;
+
+                const length = 7;
+                const mensaje = tratarRespuesta.motd.clean;
+                // var recorteMensaje = mensaje.substring(0, length);
+                var recorteMensaje = mensaje.toString().substr(0, 18);
+
+
+                document.getElementById("mensaje3").textContent = recorteMensaje;
+
+
+
+                const jugadores = tratarRespuesta.players.online + "/" + tratarRespuesta.players.max;
+                document.getElementById("jugadores3").textContent = jugadores;
+                document.getElementById("ip3").textContent = tratarRespuesta.ip;
+                document.getElementById("puerto3").textContent = tratarRespuesta.port;
+            }
+
+
+            // document.getElementById("primero").textContent = tratarRespuesta.ip;
+            // document.getElementById("segundo").textContent = tratarRespuesta.port;
+            
+        }
+
+        llamadaDeAPIprimero();
+        llamadaDeAPIsegundo();
+        llamadaDeAPItercero();
+</script>
