@@ -4,19 +4,20 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No test specified\" && exit 1"
   },
-  "author": "Luis Dieguez BArrio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RedxLus/open-source-hosting.git"
+  },
+  "author": "Luis Dieguez Barrio",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "http": "0.0.0",
-    "https": "^1.0.0",
-    "node-fetch": "^2.6.0",
-    "request": "^2.88.2"
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
