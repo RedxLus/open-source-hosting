@@ -21,12 +21,12 @@
 					<a class="inline-block py-2 px-4 text-black font-bold no-underline" href="https://next.ludiba.org">Almacenamiento</a>
 				</li>
 				<li class="mr-3">
-					<a class="inline-block py-2 px-4 text-black font-bold no-underline" href="http://ludiba.org/bots/contacto">Bots</a>
+					<a class="inline-block py-2 px-4 text-black font-bold no-underline" href="https://ludiba.org/bots/contacto">Bots</a>
 				</li>
 				<div class="dropdown">
 					<button class="dropbtn inline-block py-2 px-4 text-black font-bold no-underline">Juegos    <i class="fa fa-caret-down"></i></button>
 					<div class="dropdown-content">
-					  <a href="http://ludiba.org/juegos/minecraft">Minecraft</a>
+					  <a href="https://ludiba.org/juegos/minecraft">Minecraft</a>
 					  <a style="color: grey;" href="#">ARK (Próximamente)</a>
 					</div>
 				  </div>

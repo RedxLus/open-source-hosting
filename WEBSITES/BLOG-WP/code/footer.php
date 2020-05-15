@@ -14,15 +14,14 @@
 				</a>
 			</div>
 
-
 			<div class="flex-1">
 				<p class="uppercase text-gray-500 md:mb-6">Links interés</p>
 				<ul class="list-reset mb-6">
 					<li class="mt-2 inline-block mr-2 md:block md:mr-0">
-						<a href="/faq" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Preguntas (FAQ)</a>
+						<a href="https://ludiba.org/faq" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Preguntas (FAQ)</a>
 					</li>
 					<li class="mt-2 inline-block mr-2 md:block md:mr-0">
-						<a href="/contacto" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Contacto</a>
+						<a href="https://ludiba.org/contacto" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Contacto</a>
 					</li>
 				</ul>
 			</div>
@@ -30,10 +29,10 @@
 				<p class="uppercase text-gray-500 md:mb-6">Legal</p>
 				<ul class="list-reset mb-6">
 					<li class="mt-2 inline-block mr-2 md:block md:mr-0">
-						<a href="/terminos-y-condiciones" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Términos y condiciones</a>
+						<a href="https://ludiba.org/terminos-y-condiciones" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Términos y condiciones</a>
 					</li>
 					<li class="mt-2 inline-block mr-2 md:block md:mr-0">
-						<a href="/politica-privacidad" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Política de privacidad</a>
+						<a href="https://ludiba.org/politica-privacidad" class="no-underline hover:underline text-gray-800 hover:text-orange-500">Política de privacidad</a>
 					</li>
 				</ul>
 			</div>
