@@ -1,6 +1,31 @@
 <%- include("partials/head"); -%>
 <%- include("partials/headNav"); -%>
+<style>
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
 
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+</style>
 <section class="gradient pt-24 pb-12">
     <div class="container mx-auto px-4">
         <div class="-mx-4 flex flex-col lg:flex-row items-center">
@@ -25,41 +50,25 @@
                     <div class="py-16 px-12 text-justify">
                         <article>
                             <h2 class="text-3xl mb-3 uppercase text-left">1. Email</h2>
-                            <p class="mb-4">El siguiente formulario mandará un email a mi dirección de correo.
-                                <div class="container">
-                                    <form action="/send-email" method="post">
-                                        <div class="row">
-                                            <div class="col-md-4"></div>
-                                            <div class="form-group col-md-4">
-                                                <label for="to">To:</label>
-                                                <input type="email" class="form-control" name="to">
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-4"></div>
-                                            <div class="form-group col-md-4">
-                                                <label for="subject">Subject:</label>
-                                                <input type="text" class="form-control" name="subject">
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-4"></div>
-                                            <div class="form-group col-md-4">
-                                                <label for="body">Body:</label>
-                                                <textarea cols="5" rows="5" class="form-control" name="body"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4"></div>
-                                            <div class="form-group col-md-4">
-                                                <button type="submit" class="btn btn-success">Send</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </p>
+                            <div class="container">
+                                <form action="#">
+                                  <label for="nombre">Nombre</label>
+                                  <input type="text" id="nombre" placeholder="Cómo dirigirme a usted...">
+                              
+                                  <label for="tema">Tema</label>
+                                  <select id="tema" name="tema">
+                                    <option value="General">General</option>
+                                    <option value="Bot">Bot</option>
+                                    <option value="Error / bug / assistencia sobre servicio">Error / bug / assistencia sobre servicio</option>
+                                  </select>
+                              
+                                  <label for="msg">Mensaje</label>
+                                  <textarea id="msg" placeholder="Escriba sobre que quiere contactar..." style="height:200px"></textarea>
+                              
+                                  <input onclick="email()" type="submit" value="Enviar email">
+                                </form>
+                              </div>
+                            <p class="mb-4">El siguiente formulario mandará un email a mi dirección de correo.</p>
                         </article>
 
                     </div>
@@ -68,5 +77,21 @@
         </div>
     </div>
 </section>
+
+<script language="javascript" type="text/javascript">
+    function email()
+    {   
+        let nombre = document.getElementById("nombre").value;
+        let saludoEmail = `Hola! Mi nombre es ${nombre}.`;
+
+        let tema = document.getElementById("tema").value;
+        let temaEmail = `Relativo a: [${tema}]`;
+
+        let mensaje = document.getElementById("msg").value;
+        let mensajeEmail = `${saludoEmail} ${mensaje}`
+
+        window.open(`mailto:luisdieguezbarrio@gmail.com?subject=${temaEmail}&body=${mensajeEmail}`);
+    }
+    </script>
 
 <%- include("../partials/footer"); -%>
