@@ -98,7 +98,8 @@ spec:
                 key: nextcloud-dir-data
         volumeMounts:
         - name: pvc
-          mountPath: /var/www/html/data
+          mountPath: /var/www/html
+          subPath: html
       volumes:
       - name: pvc
         persistentVolumeClaim:
