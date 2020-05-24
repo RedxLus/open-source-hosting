@@ -1,1 +1,0 @@
-/usr/local/ispconfig/server/mods-available/rescue_core_module.inc.php

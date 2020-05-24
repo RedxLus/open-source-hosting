@@ -1,1 +1,0 @@
-/usr/local/ispconfig/server/plugins-available/webserver_plugin.inc.php

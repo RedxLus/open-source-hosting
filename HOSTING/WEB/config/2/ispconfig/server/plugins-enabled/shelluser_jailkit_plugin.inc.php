@@ -1,1 +1,0 @@
-/usr/local/ispconfig/server/plugins-available/shelluser_jailkit_plugin.inc.php

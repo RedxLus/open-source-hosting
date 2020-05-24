@@ -1,5 +1,0 @@
-<?php
-$wb['list_head_txt'] = 'Почтовые шаблоны';
-$wb['template_type_txt'] = 'Сообщение для';
-$wb['template_name_txt'] = 'Имя шаблона';
-?>

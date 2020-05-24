@@ -1,4 +1,0 @@
-<?php
-$wb['welcome_user_txt'] = 'Dobrodošao %s';
-$wb['available_modules_txt'] = 'Dostupni moduli';
-?>

@@ -1,1 +1,0 @@
-/usr/local/ispconfig/server/plugins-available/getmail_plugin.inc.php

@@ -1,1 +1,0 @@
-/usr/local/ispconfig/server/plugins-available/xmpp_plugin.inc.php

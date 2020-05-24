@@ -1,1 +1,0 @@
-/usr/local/ispconfig/server/mods-available/database_module.inc.php

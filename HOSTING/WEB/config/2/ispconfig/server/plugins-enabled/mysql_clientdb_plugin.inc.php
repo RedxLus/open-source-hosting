@@ -1,1 +1,0 @@
-/usr/local/ispconfig/server/plugins-available/mysql_clientdb_plugin.inc.php

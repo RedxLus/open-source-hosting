@@ -1,1 +1,0 @@
-/usr/local/ispconfig/server/plugins-available/cron_plugin.inc.php

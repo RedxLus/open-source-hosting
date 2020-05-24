@@ -1,1 +1,0 @@
-/usr/local/ispconfig/server/plugins-available/mail_plugin.inc.php

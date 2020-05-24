@@ -1,6 +1,0 @@
-<?php
-$wb['list_head_txt'] = 'Alan Adları';
-$wb['add_new_record_txt'] = 'Alan Adı Ekle';
-$wb['domain_txt'] = 'Alan Adı';
-$wb['user_txt'] = 'Müşteri';
-?>

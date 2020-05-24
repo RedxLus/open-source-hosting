@@ -1,1 +1,0 @@
-/usr/local/ispconfig/server/plugins-available/postfix_filter_plugin.inc.php

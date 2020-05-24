@@ -1,1 +1,0 @@
-/usr/local/ispconfig/server/plugins-available/network_settings_plugin.inc.php

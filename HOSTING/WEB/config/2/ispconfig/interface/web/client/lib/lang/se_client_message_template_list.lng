@@ -1,5 +1,0 @@
-<?php
-$wb['list_head_txt'] = 'Epostmallar';
-$wb['template_type_txt'] = 'Meddelande till';
-$wb['template_name_txt'] = 'Mallnamn';
-?>

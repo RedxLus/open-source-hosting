@@ -1,1 +1,0 @@
-/usr/local/ispconfig/server/plugins-available/backup_plugin.inc.php

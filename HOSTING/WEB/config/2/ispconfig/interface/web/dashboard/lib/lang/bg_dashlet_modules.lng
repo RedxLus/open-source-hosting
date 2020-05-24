@@ -1,4 +1,0 @@
-<?php
-$wb['available_modules_txt'] = 'Налични Модули';
-$wb['go_to_txt'] = 'Go to';
-?>

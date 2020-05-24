@@ -1,1 +1,0 @@
-/usr/local/ispconfig/server/plugins-available/bind_plugin.inc.php

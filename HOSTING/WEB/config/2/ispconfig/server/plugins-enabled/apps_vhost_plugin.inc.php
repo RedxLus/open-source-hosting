@@ -1,1 +1,0 @@
-/usr/local/ispconfig/server/plugins-available/apps_vhost_plugin.inc.php
