@@ -19,4 +19,4 @@ jobs:
         docker buildx build --push \
           --tag 'redxlus/instagram-bot:$(date +%Y-%B)' \
           --file 'HOSTING/BOTS/Instagram/dockerfile' \
-          --platform linux/amd64,linux/arm/v7
+          --platform linux/amd64,linux/arm/v7 .
