@@ -16,6 +16,6 @@ jobs:
       run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
     - name: Build the Docker image of HOSTING --> BOTS --> Instagram & push
       run: |
-        docker buildx build --push \
+        cd HOSTING/BOTS/Twitter && docker buildx build --push \
           --tag ${{ secrets.USER_DOCKER }}/instagram-bot:$(date +%Y-%B) \
-          --platform linux/amd64,linux/arm/v7 HOSTING/BOTS/Twitter/dockerfile
+          --platform linux/amd64,linux/arm/v7 .
