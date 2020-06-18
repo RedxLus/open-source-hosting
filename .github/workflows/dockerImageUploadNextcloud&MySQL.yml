@@ -1,8 +1,7 @@
 name: Nextcloud & MySQL - Docker Image CI
 on:
-  push:
-    branches:
-      - master
+  schedule:
+    - cron:  '0 0 1 * *'
 jobs:
   build:
     runs-on: ubuntu-latest
