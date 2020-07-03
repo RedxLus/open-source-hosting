@@ -9,7 +9,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image of HOSTING --> ACCESS --> GCloud
       run: |
-        docker build --file HOSTING/ACCESS/dockerfile --tag gcloud . 
+        docker build --file HOSTING/ACCESS/Dockerfile --tag gcloud . 
         docker tag gcloud:latest ${{ secrets.USER_DOCKER }}/gcloud-sdk-google-cloud:$(date +%Y-%B)
     - name: Docker login
       run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
