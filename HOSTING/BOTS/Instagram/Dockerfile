@@ -2,7 +2,7 @@ FROM debian
 
 RUN apt-get update -y && apt-get dist-upgrade -y
 RUN apt-get install python-setuptools git python-pip python3-pip -y
-RUN pip install -U instabot
+RUN python3 -m pip install -U instabot
    # Error conocido: https://github.com/instagrambot/instabot/issues/1293#issuecomment-610935629
 RUN git clone https://github.com/instagrambot/instabot.git
 
