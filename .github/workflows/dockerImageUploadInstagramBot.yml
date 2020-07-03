@@ -9,7 +9,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image of HOSTING --> BOTS --> Instagram
       run: |
-        docker build --file HOSTING/BOTS/Instagram/dockerfile --tag instagram-bot . 
+        docker build --file HOSTING/BOTS/Instagram/Dockerfile --tag instagram-bot . 
         docker tag instagram-bot:latest ${{ secrets.USER_DOCKER }}/instagram-bot:$(date +%Y-%B)
     - name: Docker login
       run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
