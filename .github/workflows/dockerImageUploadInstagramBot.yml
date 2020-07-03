@@ -7,16 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install buildx to multi-arch docker images
-      id: buildx
-      uses: crazy-max/ghaction-docker-buildx@v1
-      with:
-        version: latest
+    - name: Build the Docker image of HOSTING --> BOTS --> Instagram
+      run: |
+        docker build --file HOSTING/BOTS/Instagram/dockerfile --tag instagram-bot . 
+        docker tag instagram-bot:latest ${{ secrets.USER_DOCKER }}/instagram-bot:$(date +%Y-%B)
     - name: Docker login
       run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
-    - name: Build the Docker image of HOSTING --> BOTS --> Instagram & push
-      run: |
-        docker buildx build --push \
-          --tag 'redxlus/instagram-bot:testing' \
-          --file 'HOSTING/BOTS/Instagram/Dockerfile' \
-          --platform linux/amd64,linux/arm/v7 .
+    - name: Docker push image of HOSTING --> BOTS --> Instagram
+      run: docker push ${{ secrets.USER_DOCKER }}/instagram-bot:$(date +%Y-%B)
