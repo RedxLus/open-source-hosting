@@ -9,7 +9,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image of HOSTING --> BOTS --> Twitter
       run: |
-        docker build --file HOSTING/BOTS/Twitter/dockerfile --tag twitter-bot . 
+        docker build --file HOSTING/BOTS/Twitter/Dockerfile --tag twitter-bot . 
         docker tag twitter-bot:latest ${{ secrets.USER_DOCKER }}/twitter-bot:$(date +%Y-%B)
     - name: Docker login
       run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
