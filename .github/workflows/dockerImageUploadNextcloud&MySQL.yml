@@ -9,11 +9,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image of HOSTING --> STORAGE --> Nextcloud --> mysql
       run: |
-        docker build --file HOSTING/STORAGE/Nextcloud/mysql/dockerfile --tag mysql . 
+        docker build --file HOSTING/STORAGE/Nextcloud/mysql/Dockerfile --tag mysql . 
         docker tag mysql:latest ${{ secrets.USER_DOCKER }}/mysql-img:$(date +%Y-%B)
     - name: Build the Docker image of HOSTING --> STORAGE --> Nextcloud
       run: |
-        docker build --file HOSTING/STORAGE/Nextcloud/dockerfile --tag nextcloud . 
+        docker build --file HOSTING/STORAGE/Nextcloud/Dockerfile --tag nextcloud . 
         docker tag nextcloud:latest ${{ secrets.USER_DOCKER }}/nextcloud-img:$(date +%Y-%B)
     - name: Docker login
       run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
