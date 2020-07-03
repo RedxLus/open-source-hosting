@@ -17,6 +17,6 @@ jobs:
     - name: Build the Docker image of HOSTING --> BOTS --> Instagram & push
       run: |
         docker buildx build --push \
-          --tag 'redxlus/instagram-bot:latest' \
-          --file 'HOSTING/BOTS/Instagram/dockerfile' \
+          --tag 'redxlus/instagram-bot:testing' \
+          --file 'HOSTING/BOTS/Instagram/Dockerfile' \
           --platform linux/amd64,linux/arm/v7 .
