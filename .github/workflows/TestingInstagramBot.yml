@@ -1,4 +1,4 @@
-name: Instagram Bot - Docker Image CI
+name: Testing Instagram Bot
 on:
   push:
     branches: master
@@ -7,11 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image of HOSTING --> BOTS --> Instagram
-      run: |
-        docker build --file HOSTING/BOTS/Instagram/DockerfileTest --tag instagram-bot . 
-        docker tag instagram-bot:latest ${{ secrets.USER_DOCKER }}/instagram-bot:testing
+    - name: Install buildx to multi-arch docker images
+      id: buildx
+      uses: crazy-max/ghaction-docker-buildx@v1
+      with:
+        version: latest
     - name: Docker login
       run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
-    - name: Docker push image of HOSTING --> BOTS --> Instagram
-      run: docker push ${{ secrets.USER_DOCKER }}/instagram-bot:testing
+    - name: Build the Docker image of HOSTING --> BOTS --> Instagram & push
+      run: |
+        docker buildx build --push \
+          --tag 'redxlus/instagram-bot:testing' \
+          --file 'HOSTING/BOTS/Instagram/DockerfileTest' \
+          --platform linux/amd64,linux/arm/v7 .
