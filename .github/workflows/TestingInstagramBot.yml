@@ -1,0 +1,17 @@
+name: Instagram Bot - Docker Image CI
+on:
+  push:
+    branches: master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image of HOSTING --> BOTS --> Instagram
+      run: |
+        docker build --file HOSTING/BOTS/Instagram/DockerfileTest --tag instagram-bot . 
+        docker tag instagram-bot:latest ${{ secrets.USER_DOCKER }}/instagram-bot:testing
+    - name: Docker login
+      run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
+    - name: Docker push image of HOSTING --> BOTS --> Instagram
+      run: docker push ${{ secrets.USER_DOCKER }}/instagram-bot:testing
