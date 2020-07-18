@@ -1,1 +1,20 @@
-
+name: Testing - 1
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install buildx to multi-arch Docker images
+      id: buildx
+      uses: crazy-max/ghaction-docker-buildx@v1
+      with:
+        version: latest
+    - name: DockerHub login
+      run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
+    - name: Build the Docker image of HOSTING --> GAMES --> Minecraft & push to DockerHub
+      run: |
+        docker buildx build --push \
+          --tag 'redxlus/minecraft-server:testing' \
+          --file 'HOSTING/GAMES/Minecraft/Dockerfile' \
+          --platform linux/amd64,linux/arm/v7 .
