@@ -17,6 +17,7 @@ jobs:
     - name: Build the Docker image of HOSTING --> GAMES --> Minecraft & push to DockerHub
       run: |
         docker buildx build --push \
+          --cache-from=redxlus/minecraft-server:testing  \
           --tag 'redxlus/minecraft-server:testing2' \
           --file 'HOSTING/GAMES/Minecraft/Dockerfile' \
           --platform linux/amd64,linux/arm/v7 .
