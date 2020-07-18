@@ -10,16 +10,12 @@ jobs:
       uses: crazy-max/ghaction-docker-buildx@v1
       with:
         version: latest
-    - name: pull
-      run: docker pull redxlus/minecraft-server:testing
     - name: DockerHub login
       run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
     - name: Build the Docker image of HOSTING --> GAMES --> Minecraft & push to DockerHub
       run: |
         docker buildx build --push \
-          --cache-from=redxlus/minecraft-server:testing  \
+          --tag 'redxlus/minecraft-server:testing' \
           --tag 'redxlus/minecraft-server:testing2' \
           --file 'HOSTING/GAMES/Minecraft/Dockerfile' \
           --platform linux/amd64,linux/arm/v7 .
-    - name: ls
-      run: docker image ls
