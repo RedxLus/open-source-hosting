@@ -1,4 +1,4 @@
-name: Testing - 1
+name: Testing - 2
 on: push
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
     - name: Build the Docker image of HOSTING --> GAMES --> Minecraft & push to DockerHub
       run: |
         docker buildx build --push \
-          --tag 'redxlus/minecraft-server:testing' \
-          --tag 'redxlus/minecraft-server:testing2' \
+          --tag 'redxlus/minecraft-server:'$(date +%Y-%B) \
+          --tag 'redxlus/minecraft-server:latest' \
           --file 'HOSTING/GAMES/Minecraft/Dockerfile' \
           --platform linux/amd64,linux/arm/v7 .
