@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
         - name: forge
-          image: redxlus/minecraft-server:FORGE-1.12.2
+          image: redxlus/minecraft-server:PIXELMON-MOD-FORGE-1.12.2
           ports:
           - containerPort: 25565
             name: mine
