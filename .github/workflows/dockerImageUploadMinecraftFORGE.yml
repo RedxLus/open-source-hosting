@@ -1,0 +1,22 @@
+name: Minecraft Server - Docker Image CI 
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install buildx to multi-arch Docker images
+      id: buildx
+      uses: crazy-max/ghaction-docker-buildx@v1
+      with:
+        version: latest
+    - name: DockerHub login
+      run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
+    - name: Build the Docker image of HOSTING --> GAMES --> Minecraft & push to DockerHub
+      run: |
+        docker buildx build --push \
+          --tag 'redxlus/minecraft-server:FORGE-1.12.2'  \
+          --file 'HOSTING/GAMES/Minecraft/forge/Dockerfile' \
+          --platform linux/amd64,linux/arm/v7 .
