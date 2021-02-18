@@ -14,8 +14,9 @@ jobs:
       run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
     - name: Build the Docker image of HOSTING --> GAMES --> Minecraft & push to DockerHub
       run: |
+        wget https://hub.spigotmc.org/stash/projects/SPIGOT/repos/builddata/raw/info.json?at=refs%2Fheads%2Fmaster -O info.json
+        VERSION=$(cat info.json | jq '.minecraftVersion' | tr -d '"')
         docker buildx build --push \
-          --tag 'redxlus/minecraft-server:'$(date +%Y-%B) \
-          --tag 'redxlus/minecraft-server:latest' \
+          --tag 'redxlus/minecraft-server:'$VERSION \
           --file 'HOSTING/GAMES/Minecraft/Dockerfile' \
           --platform linux/amd64,linux/arm/v7 .
