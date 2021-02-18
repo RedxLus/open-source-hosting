@@ -1,7 +1,5 @@
 name: Minecraft Server - Docker Image CI 
-on:
-  schedule:
-    - cron:  '0 0 * * 0'
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +17,7 @@ jobs:
         wget https://hub.spigotmc.org/stash/projects/SPIGOT/repos/builddata/raw/info.json?at=refs%2Fheads%2Fmaster -O info.json
         VERSION=$(cat info.json | jq '.minecraftVersion' | tr -d '"')
         docker buildx build --push \
-          --tag 'redxlus/minecraft-server:'$VERSION \
+          --tag 'redxlus/minecraft-server:SPIGOT-'$VERSION \
           --tag 'redxlus/minecraft-server:latest' \
           --file 'HOSTING/GAMES/Minecraft/Dockerfile' \
           --platform linux/amd64,linux/arm/v7 .
