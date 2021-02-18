@@ -1,5 +1,7 @@
 name: Minecraft Server - Docker Image CI 
-on: [ push ]
+on:
+  schedule:
+    - cron:  '0 0 * * 0'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,5 +20,6 @@ jobs:
         VERSION=$(cat info.json | jq '.minecraftVersion' | tr -d '"')
         docker buildx build --push \
           --tag 'redxlus/minecraft-server:'$VERSION \
+          --tag 'redxlus/minecraft-server:latest' \
           --file 'HOSTING/GAMES/Minecraft/Dockerfile' \
           --platform linux/amd64,linux/arm/v7 .
