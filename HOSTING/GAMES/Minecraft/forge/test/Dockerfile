@@ -41,7 +41,7 @@ RUN mkdir /opt/minecraft/mods \
 # cleanup
 RUN rm /opt/minecraft/minecraft-forge-installer.jar
 
-COPY server.sh /opt/minecraft
+ADD https://raw.githubusercontent.com/RedxLus/open-source-hosting/master/HOSTING/GAMES/Minecraft/forge/test/server.sh /opt/minecraft
 
 EXPOSE 25565
 
