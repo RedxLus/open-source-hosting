@@ -1,0 +1,85 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft-service
+spec:
+  ports:
+  - name: minecraft
+    targetPort: 25565
+    port: 25565
+  selector:
+    app: minecraft
+    tipo: deploy
+    version: "0.0.0"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: serverpp
+type: Opaque
+data:
+  server.properties: I01pbmVjcmFmdCBzZXJ2ZXIgcHJvcGVydGllcwojVGh1IE9jdCAxNSAyMDowNjoyNyBDRVNUIDIwMTUKc3Bhd24tcHJvdGVjdGlvbj0wCm1heC10aWNrLXRpbWU9TWF0cmlldXhlbG1vbgpzZXJ2ZXItbmFtZT1QaXhlbG1vbgpnZW5lcmF0b3Itc2V0dGluZ3M9CmZvcmNlLWdhbWVtb2RlPWZhbHNlCmFsbG93LW5ldGhlcj10cnVlCmdhbWVtb2RlPTAKZW5hYmxlLXF1ZXJ5PWZhbHNlCnBsYXllci1pZGxlLXRpbWVvdXQ9MApkaWZmaWN1bHR5PTAKc3Bhd24tbW9uc3RlcnM9dHJ1ZQpvcC1wZXJtaXNzaW9uLWxldmVsPTQKcmVzb3VyY2UtcGFjay1oYXNoPQphbm5vdW5jZS1wbGF5ZXItYWNoaWV2ZW1lbnRzPXRydWUKcHZwPXRydWUKc25vb3Blci1lbmFibGVkPXRydWUKbGV2ZWwtdHlwZT1ERUZBVUxUCmhhcmRjb3JlPWZhbHNlCmVuYWJsZS1jb21tYW5kLWJsb2NrPWZhbHNlCm1heC1wbGF5ZXJzPTIwCm5ldHdvcmstY29tcHJlc3Npb24tdGhyZXNob2xkPTI1NgptYXgtd29ybGQtc2l6ZT0yOTk5OTk4NApzZXJ2ZXItcG9ydD0Kc2VydmVyLWlwPQpzcGF3bi1ucGNzPXRydWUKYWxsb3ctZmxpZ2h0PXRydWUKbGV2ZWwtbmFtZT13b3JsZAp2aWV3LWRpc3RhbmNlPTEwCnJlc291cmNlLXBhY2s9CnNwYXduLWFuaW1hbHM9dHJ1ZQp3aGl0ZS1saXN0PXRydWUKZ2VuZXJhdGUtc3RydWN0dXJlcz10cnVlCm9ubGluZS1tb2RlPXRydWUKbWF4LWJ1aWxkLWhlaWdodD0yNTYKbGV2ZWwtc2VlZD0KbW90ZD1cdTAwQTc2TWF0cmlldXhlbG1vblxuCmVuYWJsZS1yY29uPWZhbHNl
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft
+  labels:
+    app: minecraft
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft
+  template:
+    metadata:
+      labels:
+        app: minecraft
+        tipo: deploy
+        version: "0.0.0"
+    spec:
+      containers:
+        - name: forge
+          image: redxlus/minecraft-server:FORGE-1.12.2
+          ports:
+          - containerPort: 25565
+            name: mine
+          volumeMounts:
+          - name: world
+            mountPath: /world
+      volumes:
+      - name: world
+        persistentVolumeClaim:
+         claimName: world-minecraft
+
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: world-minecraft
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+
+---
+  kind: Service
+  apiVersion: v1
+  metadata:
+    name: loadbalancer-minecraft
+  spec:
+    type: LoadBalancer
+    selector:
+      app: minecraft
+      tipo: deploy
+      version: "0.0.0"
+    ports:
+      - protocol: TCP
+        port: 25565
+        targetPort: 25565
+        name: minecraft
