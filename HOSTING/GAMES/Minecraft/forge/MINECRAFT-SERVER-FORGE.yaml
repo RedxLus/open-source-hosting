@@ -47,15 +47,9 @@ spec:
           - containerPort: 25565
             name: mine
           volumeMounts:
-          - name: properties
-            mountPath: /server.properties
-            subPath: server.properties
           - name: world
             mountPath: /world
       volumes:
-      - name: properties
-        secret:
-         secretName: serverpp
       - name: world
         persistentVolumeClaim:
          claimName: world-minecraft
