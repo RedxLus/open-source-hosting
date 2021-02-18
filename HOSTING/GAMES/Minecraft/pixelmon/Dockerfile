@@ -1,11 +1,6 @@
 FROM ubuntu:18.04
 
-# install java 8
-RUN apt-get update \
-  && apt-get install -y software-properties-common \
-  && add-apt-repository ppa:openjdk-r/ppa \
-  && apt-get update \
-  && apt-get install -y openjdk-8-jre wget
+RUN apt-get update && apt-get install -y nano wget git default-jdk
 
 # working directory for minecraft
 RUN mkdir /opt/minecraft
@@ -41,7 +36,7 @@ RUN mkdir /opt/minecraft/mods \
 # cleanup
 RUN rm /opt/minecraft/minecraft-forge-installer.jar
 
-ADD https://raw.githubusercontent.com/RedxLus/open-source-hosting/master/HOSTING/GAMES/Minecraft/forge/test/server.sh /opt/minecraft
+ADD https://raw.githubusercontent.com/RedxLus/open-source-hosting/master/HOSTING/GAMES/Minecraft/pixelmon/server.sh /opt/minecraft
 
 EXPOSE 25565
 

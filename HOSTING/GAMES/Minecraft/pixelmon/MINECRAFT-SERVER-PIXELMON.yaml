@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft-service
+spec:
+  ports:
+  - name: minecraft
+    targetPort: 25565
+    port: 25565
+  selector:
+    app: minecraft
+    tipo: deploy
+    version: "0.0.0"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: serverpp
+type: Opaque
+data:
+  server.properties: I01pbmVjcmFmdCBzZXJ2ZXIgcHJvcGVydGllcwojU2F0IFNlcCAxNCAxOToxNzo0NiBVVEMgMjAxOQpzcGF3bi1wcm90ZWN0aW9uPTE2Cm1heC10aWNrLXRpbWU9NjAwMDAKcXVlcnkucG9ydD0yNTU2NQpnZW5lcmF0b3Itc2V0dGluZ3M9CmZvcmNlLWdhbWVtb2RlPWZhbHNlCmFsbG93LW5ldGhlcj10cnVlCmVuZm9yY2Utd2hpdGVsaXN0PWZhbHNlCmdhbWVtb2RlPTAKYnJvYWRjYXN0LWNvbnNvbGUtdG8tb3BzPXRydWUKZW5hYmxlLXF1ZXJ5PWZhbHNlCnBsYXllci1pZGxlLXRpbWVvdXQ9MApkaWZmaWN1bHR5PTEKYnJvYWRjYXN0LXJjb24tdG8tb3BzPXRydWUKc3Bhd24tbW9uc3RlcnM9dHJ1ZQpvcC1wZXJtaXNzaW9uLWxldmVsPTQKcHZwPXRydWUKc25vb3Blci1lbmFibGVkPXRydWUKbGV2ZWwtdHlwZT1ERUZBVUxUCmhhcmRjb3JlPWZhbHNlCmVuYWJsZS1jb21tYW5kLWJsb2NrPWZhbHNlCm5ldHdvcmstY29tcHJlc3Npb24tdGhyZXNob2xkPTI1NgptYXgtcGxheWVycz0yMAptYXgtd29ybGQtc2l6ZT0yOTk5OTk4NApyZXNvdXJjZS1wYWNrLXNoYTE9CmZ1bmN0aW9uLXBlcm1pc3Npb24tbGV2ZWw9MgpyY29uLnBvcnQ9MjU1NzUKc2VydmVyLXBvcnQ9MjU1NjUKZGVidWc9ZmFsc2UKc2VydmVyLWlwPQpzcGF3bi1ucGNzPXRydWUKYWxsb3ctZmxpZ2h0PWZhbHNlCmxldmVsLW5hbWU9d29ybGQKdmlldy1kaXN0YW5jZT0xMApyZXNvdXJjZS1wYWNrPQpzcGF3bi1hbmltYWxzPXRydWUKd2hpdGUtbGlzdD1mYWxzZQpyY29uLnBhc3N3b3JkPQpnZW5lcmF0ZS1zdHJ1Y3R1cmVzPXRydWUKb25saW5lLW1vZGU9ZmFsc2UKbWF4LWJ1aWxkLWhlaWdodD0yNTYKbGV2ZWwtc2VlZD0KcHJldmVudC1wcm94eS1jb25uZWN0aW9ucz1mYWxzZQp1c2UtbmF0aXZlLXRyYW5zcG9ydD10cnVlCm1vdGQ9TFVESUJBIEdST1VQIC0gRW4gRG9ja2VyICsgS3ViZXJuZXRlcwplbmFibGUtcmNvbj1mYWxzZQ==
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft
+  labels:
+    app: minecraft
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft
+  template:
+    metadata:
+      labels:
+        app: minecraft
+        tipo: deploy
+        version: "0.0.0"
+    spec:
+      containers:
+        - name: forge
+          image: redxlus/minecraft-server:PIXELMON-MOD-FORGE-1.12.2
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 25565
+            name: mine
+          volumeMounts:
+          - name: properties
+            mountPath: /opt/minecraft/server.properties
+            subPath: server.properties
+          - name: world
+            mountPath: /opt/minecraft/world
+      volumes:
+      - name: properties
+        secret:
+         secretName: serverpp
+      - name: world
+        persistentVolumeClaim:
+         claimName: world-minecraft
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: world-minecraft
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+
+---
+  kind: Service
+  apiVersion: v1
+  metadata:
+    name: loadbalancer-minecraft
+  spec:
+    type: LoadBalancer
+    selector:
+      app: minecraft
+      tipo: deploy
+      version: "0.0.0"
+    ports:
+      - protocol: TCP
+        port: 25565
+        targetPort: 25565
+        name: minecraft
