@@ -33,9 +33,9 @@ RUN mkdir /opt/minecraft/mods \
   && mkdir /opt/minecraft/mods-available \
   && wget -O /opt/minecraft/mods/Pixelmon.jar https://dl.reforged.gg/33trlT6 \
   && wget -O /opt/minecraft/mods-available/extrautils2.jar https://media.forgecdn.net/files/2678/374/extrautils2-1.12-1.9.9.jar \
-  && wget -O /opt/minecraft/mods-available/refinedstorage.jar https://edge.forgecdn.net/files/3196/167/refinedstorage-1.9.12.jar \
+  && wget -O /opt/minecraft/mods-available/refinedstorage.jar https://edge.forgecdn.net/files/2940/914/refinedstorage-1.6.16.jar \
   && wget -O /opt/minecraft/mods-available/PixelExtras.jar https://pixelmonmod.com/mirror/sidemods/PixelmonExtras/2.5.11/PixelExtras-1.12.2-2.5.11-universal.jar \
-  && wget -O /opt/minecraft/mods-available/jei.jar https://edge.forgecdn.net/files/3040/523/jei_1.12.2-4.16.1.301.jar
+  && wget -O /opt/minecraft/mods-available/jei.jar https://edge.forgecdn.net/files/3043/174/jei_1.12.2-4.16.1.302.jar
 
 
 # cleanup
