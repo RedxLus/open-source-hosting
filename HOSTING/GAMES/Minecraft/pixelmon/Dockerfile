@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-RUN apt-get update && apt-get install -y nano wget git default-jdk
+RUN apt-get update && apt-get install -y nano wget git openjdk-8-jdk
 RUN mkdir /minecraft
 
 RUN wget "https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.5.2838/forge-1.12.2-14.23.5.2838-installer.jar" -O /minecraft/minecraft-forge-installer.jar
