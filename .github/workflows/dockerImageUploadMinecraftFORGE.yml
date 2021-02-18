@@ -1,7 +1,7 @@
-name: Minecraft Server - Docker Image CI 
+name: Minecraft Server PIXELMON - Docker Image CI 
 on:
   push:
-    branches: [ master ]
+    branches: [ pixelmon ]
 jobs:
   build:
     runs-on: ubuntu-latest
