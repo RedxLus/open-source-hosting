@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y nano wget git default-jdk
 RUN git config --global core.autocrlf input && mkdir minecraft
 
 RUN wget "https://hub.spigotmc.org//jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar" -O minecraft/BuildTools.jar
-RUN java -Xmx4G -jar minecraft/BuildTools.jar --rev latest
+RUN java -Xmx2G -jar minecraft/BuildTools.jar --rev latest
 
 RUN apt-get purge -y --autoremove git
 RUN echo "eula=true" > eula.txt && mkdir plugins
