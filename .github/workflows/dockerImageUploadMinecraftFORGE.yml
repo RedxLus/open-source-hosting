@@ -1,7 +1,7 @@
 name: Minecraft Server - Docker Image CI 
 on:
   push:
-    branches: [ forge ]
+    branches: [ master ]
 jobs:
   build:
     runs-on: ubuntu-latest
