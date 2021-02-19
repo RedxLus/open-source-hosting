@@ -48,10 +48,10 @@ spec:
             name: mine
           volumeMounts:
           - name: properties
-            mountPath: /server.properties
+            mountPath: /minecraft/server.properties
             subPath: server.properties
           - name: world
-            mountPath: /world
+            mountPath: /minecraft/world
       volumes:
       - name: properties
         secret:
