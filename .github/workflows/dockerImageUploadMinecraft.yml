@@ -1,7 +1,7 @@
 name: Minecraft Server - Docker Image CI 
 on:
-  push:
-    branches: [ otro ]
+  schedule:
+    - cron:  "0 0 1 * *"
 jobs:
   build:
     runs-on: ubuntu-latest
