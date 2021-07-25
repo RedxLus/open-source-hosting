@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  prueba-minecraft:
+   image: redxlus/minecraft-server
+   ports:
+    - "25565:25565"
+   restart: always
+   volumes:
+    - "my-minecraft-data:/minecraft/world"
+volumes:
+ my-minecraft-data: {}
