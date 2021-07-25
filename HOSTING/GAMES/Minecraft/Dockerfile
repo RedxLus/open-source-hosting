@@ -1,13 +1,6 @@
 FROM ubuntu:20.04
 
-RUN apt-get update && apt-get install -y nano wget git apt-transport-https gnupg
-
-RUN wget https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public
-RUN gpg --no-default-keyring --keyring ./adoptopenjdk-keyring.gpg --import public
-RUN gpg --no-default-keyring --keyring ./adoptopenjdk-keyring.gpg --export --output adoptopenjdk-archive-keyring.gpg 
-RUN mv adoptopenjdk-archive-keyring.gpg /usr/share/keyrings 
-RUN echo "deb [signed-by=/usr/share/keyrings/adoptopenjdk-archive-keyring.gpg] https://adoptopenjdk.jfrog.io/adoptopenjdk/deb focal main" | tee /etc/apt/sources.list.d/adoptopenjdk.list
-RUN apt-get update && apt-get install -y adoptopenjdk-16-openj9
+RUN apt-get update && apt-get install -y nano wget git apt-transport-https gnupg openjdk-16-jre
 
 RUN git config --global core.autocrlf input && mkdir /minecraft
 
