@@ -1,5 +1,7 @@
 name: Google Cloud - Docker Image CI
-on: [push]
+on:
+  schedule:
+    - cron:  '0 0 1 * *'
 jobs:
   build:
     runs-on: ubuntu-latest
