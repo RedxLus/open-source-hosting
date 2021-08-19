@@ -1,7 +1,7 @@
 FROM debian
 
 RUN apt-get update -y && apt-get dist-upgrade -y
-RUN apt-get install python-setuptools python3 git python-pip python-dev python3-dev python3-pip python3-scipy \
+RUN apt-get install python-setuptools python3 git python3-pip python-dev python3-dev python3-pip python3-scipy \
     build-essential libssl-dev libffi-dev libxml2-dev libxslt1-dev zlib1g-dev \
     git wget python3-numpy python3-scipy netpbm \
     python3-pyqt5 ghostscript libffi-dev libjpeg-turbo-progs \
