@@ -1,17 +1,18 @@
 name: Twitter Bot - Docker Image CI
-on:
-  schedule:
-    - cron:  '0 0 1 * *'
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image of HOSTING --> BOTS --> Twitter
+    - name: DockerHub login
+      uses: docker/login-action@v1
+      with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Docker build and push image of HOSTING --> BOTS --> Twitter
       run: |
-        docker build --file HOSTING/BOTS/Twitter/Dockerfile --tag twitter-bot . 
-        docker tag twitter-bot:latest ${{ secrets.USER_DOCKER }}/twitter-bot:$(date +%Y-%B)
-    - name: Docker login
-      run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
-    - name: Docker push image of HOSTING --> BOTS --> Twitter
-      run: docker push ${{ secrets.USER_DOCKER }}/twitter-bot:$(date +%Y-%B)
+        docker build --file HOSTING/STORAGE/Nextcloud/mysql/Dockerfile \
+                                            --tag ${{ secrets.DOCKERHUB_USERNAME }}/twitter-bot:$(date +%Y-%B) \
+                                            --tag ${{ secrets.DOCKERHUB_USERNAME }}/twitter-bot:latest .
+        docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/twitter-bot --all-tags
