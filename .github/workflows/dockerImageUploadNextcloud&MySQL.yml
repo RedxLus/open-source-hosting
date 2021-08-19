@@ -1,23 +1,24 @@
 name: Nextcloud & MySQL - Docker Image CI
-on:
-  schedule:
-    - cron:  '0 0 1 * *'
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image of HOSTING --> STORAGE --> Nextcloud --> mysql
+    - name: DockerHub login
+      uses: docker/login-action@v1
+      with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Docker build and push image of HOSTING --> STORAGE --> Nextcloud --> mysql
       run: |
-        docker build --file HOSTING/STORAGE/Nextcloud/mysql/Dockerfile --tag mysql . 
-        docker tag mysql:latest ${{ secrets.USER_DOCKER }}/mysql-img:$(date +%Y-%B)
-    - name: Build the Docker image of HOSTING --> STORAGE --> Nextcloud
+        docker build --file HOSTING/STORAGE/Nextcloud/mysql/Dockerfile \
+                                            --tag ${{ secrets.DOCKERHUB_USERNAME }}/mysql-img:$(date +%Y-%B) \
+                                            --tag ${{ secrets.DOCKERHUB_USERNAME }}/mysql-img:latest .
+        docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/mysql-img --all-tags
+    - name: Docker build and push image of HOSTING --> STORAGE --> Nextcloud
       run: |
-        docker build --file HOSTING/STORAGE/Nextcloud/Dockerfile --tag nextcloud . 
-        docker tag nextcloud:latest ${{ secrets.USER_DOCKER }}/nextcloud-img:$(date +%Y-%B)
-    - name: Docker login
-      run: docker login --username='${{ secrets.USER_DOCKER }}' --password=${{ secrets.PASS_DOCKER }}
-    - name: Docker push image of HOSTING --> ACCESS --> Nextcloud --> mysql
-      run: docker push ${{ secrets.USER_DOCKER }}/mysql-img:$(date +%Y-%B)
-    - name: Docker push image of HOSTING --> ACCESS --> Nextcloud
-      run: docker push ${{ secrets.USER_DOCKER }}/nextcloud-img:$(date +%Y-%B)
+        docker build --file HOSTING/ACCESS/Dockerfile \
+                                            --tag ${{ secrets.DOCKERHUB_USERNAME }}/nextcloud-img:$(date +%Y-%B) \
+                                            --tag ${{ secrets.DOCKERHUB_USERNAME }}/nextcloud-img:latest .
+        docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/nextcloud-img --all-tags
