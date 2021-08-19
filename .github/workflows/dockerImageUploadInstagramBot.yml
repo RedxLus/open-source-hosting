@@ -12,6 +12,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Docker build and push image of HOSTING --> BOTS --> Instagram
       run: |
-        docker build --file HOSTING/BOTS/Instagram/Dockerfile --tag instagram-bot:$(date +%Y-%B) --tag instagram-bot:latest .
+        docker build --file HOSTING/BOTS/Instagram/Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/instagram-bot:$(date +%Y-%B) --tag ${{ secrets.DOCKERHUB_USERNAME }}/instagram-bot:latest .
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/instagram-bot:$(date +%Y-%B)
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/instagram-bot:latest
