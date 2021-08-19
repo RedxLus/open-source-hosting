@@ -1,20 +1,18 @@
 name: Google Cloud - Docker Image CI
-on:
-  schedule:
-    - cron:  '0 0 1 * *'
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image of HOSTING --> ACCESS --> GCloud
-      run: |
-        docker build --file HOSTING/ACCESS/Dockerfile --tag gcloud . 
-        docker tag gcloud:latest ${{ secrets.USER_DOCKER }}/gcloud-sdk-google-cloud:$(date +%Y-%B)
     - name: DockerHub login
       uses: docker/login-action@v1
       with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Docker push image of HOSTING --> ACCESS --> GCloud
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/gcloud-sdk-google-cloud:$(date +%Y-%B)
+    - name: Docker build and push image of HOSTING --> ACCESS --> GCloud
+      run: |
+        docker build --file HOSTING/ACCESS/Dockerfile \
+                                            --tag ${{ secrets.DOCKERHUB_USERNAME }}/gcloud-sdk-google-cloud:$(date +%Y-%B) \
+                                            --tag ${{ secrets.DOCKERHUB_USERNAME }}/gcloud-sdk-google-cloud:latest .
+        docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/gcloud-sdk-google-cloud --all-tags
