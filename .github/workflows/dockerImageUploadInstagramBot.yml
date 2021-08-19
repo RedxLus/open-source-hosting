@@ -5,13 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image of HOSTING --> BOTS --> Instagram
-      run: |
-        docker build --file HOSTING/BOTS/Instagram/Dockerfile --tag instagram-bot:$(date +%Y-%B) --tag instagram-bot:latest .
     - name: DockerHub login
       uses: docker/login-action@v1
       with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Docker push image of HOSTING --> BOTS --> Instagram
-      run: docker push instagram-bot --all-tags
+    - name: Docker build and push image of HOSTING --> BOTS --> Instagram
+      run: |
+        docker build --file HOSTING/BOTS/Instagram/Dockerfile --tag instagram-bot:$(date +%Y-%B) --tag instagram-bot:latest .
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/instagram-bot:$(date +%Y-%B)
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/instagram-bot:latest
