@@ -14,4 +14,4 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Docker push image of HOSTING --> BOTS --> Instagram
-      run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/instagram-bot --all-tags
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/instagram-bot --all-tags
