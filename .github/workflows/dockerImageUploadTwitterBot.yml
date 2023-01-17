@@ -12,7 +12,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Docker build and push image of HOSTING --> BOTS --> Twitter
       run: |
-        docker build --file HOSTING/STORAGE/Nextcloud/mysql/Dockerfile \
+        docker build --file HOSTING/BOTS/Twitter/Dockerfile \
                                             --tag ${{ secrets.DOCKERHUB_USERNAME }}/twitter-bot:$(date +%Y-%B) \
                                             --tag ${{ secrets.DOCKERHUB_USERNAME }}/twitter-bot:latest .
         docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/twitter-bot --all-tags
