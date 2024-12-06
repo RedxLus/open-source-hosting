@@ -1,6 +1,8 @@
-FROM ubuntu:20.04
+FROM ubuntu
 
-RUN apt-get update && apt-get install -y nano wget git apt-transport-https gnupg openjdk-16-jre
+RUN apt-get update && apt-get install -y nano wget git apt-transport-https gnupg
+
+RUN wget https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.deb && dpkg -i jdk-23_linux-x64_bin.deb
 
 RUN git config --global core.autocrlf input && mkdir /minecraft
 
